@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Lucent Gastronomic Nexus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-brown: #5D4037;
+            --dark-brown: #3E2723;
+            --medium-brown: #795548;
+            --light-brown: #D7CCC8;
+            --accent-brown: #A1887F;
+            --text-light: #FFF8F0;
+            --text-dark: #2C1810;
+            --highlight: #FFAB91;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        
+        body {
+            background-color: #F5F1EE;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-brown);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--highlight);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: var(--medium-brown);
+            color: var(--highlight);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(93, 64, 55, 0.85), rgba(62, 39, 35, 0.9)), url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Terms Content */
+        .terms-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+            margin-bottom: 4rem;
+        }
+        
+        .terms-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .terms-sidebar {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-brown);
+            margin-bottom: 2rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-brown);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: var(--highlight);
+        }
+        
+        .terms-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .terms-section h2 {
+            font-size: 1.6rem;
+            color: var(--primary-brown);
+            margin-bottom: 1rem;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--light-brown);
+        }
+        
+        .terms-section h3 {
+            font-size: 1.3rem;
+            color: var(--medium-brown);
+            margin: 1.5rem 0 0.8rem;
+        }
+        
+        .terms-section p, .terms-section li {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        
+        .terms-section ul, .terms-section ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .terms-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background-color: #FFF8F0;
+            border-left: 4px solid var(--highlight);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .sidebar-title {
+            font-size: 1.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 1.2rem;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--light-brown);
+        }
+        
+        .quick-nav {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .quick-nav li {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--light-brown);
+        }
+        
+        .quick-nav a {
+            color: var(--medium-brown);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+        }
+        
+        .quick-nav a:hover {
+            color: var(--primary-brown);
+            padding-left: 5px;
+        }
+        
+        .update-info {
+            background-color: #F9F5F3;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        .update-info h4 {
+            color: var(--dark-brown);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 4rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .contact-section h2 {
+            font-size: 2rem;
+            color: var(--dark-brown);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--primary-brown);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .contact-btn:hover {
+            background-color: var(--dark-brown);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-brown);
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--highlight);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--highlight);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column a {
+            color: var(--light-brown);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column a:hover {
+            color: var(--highlight);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            margin-top: 10px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info i {
+            color: var(--highlight);
+            width: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--highlight);
+            color: var(--dark-brown);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: var(--light-brown);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .terms-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .terms-sidebar {
+                position: static;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            .nav-menu.active {
+                display: block;
+            }
+            
+            .nav-menu ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .terms-content {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header {
+                padding: 3rem 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-mortar-pestle"></i>
+                </div>
+                <div>
+                    <h1>Lucent Gastronomic Nexus</h1>
+                    <p>Artisanal Recipes & Culinary Wisdom</p>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="terms.html" class="active">Terms of Service</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="cookies.html">Cookies Policy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Terms of Service</h1>
+            <p>Please read these terms carefully before using our website and services</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="terms-container">
+            <!-- Main Content -->
+            <main class="terms-content">
+                <h1 class="section-title">Terms of Service Agreement</h1>
+                
+                <div class="highlight-box">
+                    <p><strong>Last Updated: April 15, 2023</strong></p>
+                    <p>By accessing or using the Lucent Gastronomic Nexus website, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you may not access our services.</p>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>1. Acceptance of Terms</h2>
+                    <p>Welcome to Lucent Gastronomic Nexus ("we," "our," or "us"). These Terms of Service govern your use of our website located at www.lucentgastronomic.com and our related services. By accessing, browsing, or using our website, you acknowledge that you have read, understood, and agree to be bound by these Terms.</p>
+                    
+                    <h3>1.1 Eligibility</h3>
+                    <p>You must be at least 18 years of age to use our website. By agreeing to these Terms, you represent and warrant that you are at least 18 years old.</p>
+                    
+                    <h3>1.2 Modifications</h3>
+                    <p>We reserve the right to modify these Terms at any time. We will provide notice of significant changes by posting the updated Terms on our website with a new "Last Updated" date. Your continued use of our services after such changes constitutes your acceptance of the new Terms.</p>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>2. User Accounts and Registration</h2>
+                    <p>Some features of our website may require you to create an account. When you create an account, you agree to:</p>
+                    <ul>
+                        <li>Provide accurate, current, and complete information</li>
+                        <li>Maintain and promptly update your account information</li>
+                        <li>Maintain the security of your password and accept all risks of unauthorized access</li>
+                        <li>Notify us immediately if you discover or suspect any security breaches related to your account</li>
+                        <li>Take responsibility for all activities that occur under your account</li>
+                    </ul>
+                    
+                    <p>We reserve the right to suspend or terminate your account if any information provided during registration or thereafter proves to be inaccurate, false, or misleading.</p>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>3. Intellectual Property Rights</h2>
+                    <h3>3.1 Our Content</h3>
+                    <p>All content on this website, including but not limited to text, graphics, logos, images, recipes, cooking techniques, and software, is the property of Lucent Gastronomic Nexus or our content suppliers and is protected by international copyright, trademark, and other intellectual property laws.</p>
+                    
+                    <h3>3.2 Limited License</h3>
+                    <p>We grant you a limited, non-exclusive, non-transferable, revocable license to access and use our website for personal, non-commercial purposes. This license does not include:</p>
+                    <ul>
+                        <li>Resale or commercial use of our website or its contents</li>
+                        <li>Collection and use of any recipe listings, descriptions, or prices</li>
+                        <li>Downloading or copying of account information for the benefit of another merchant</li>
+                        <li>Any use of data mining, robots, or similar data gathering and extraction tools</li>
+                    </ul>
+                    
+                    <h3>3.3 User-Generated Content</h3>
+                    <p>By submitting content (comments, reviews, photos, etc.) to our website, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate, and distribute your content in any existing or future media.</p>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>4. User Conduct and Responsibilities</h2>
+                    <p>You agree not to use our website to:</p>
+                    <ul>
+                        <li>Violate any laws, regulations, or third-party rights</li>
+                        <li>Post false, inaccurate, misleading, or defamatory content</li>
+                        <li>Distribute viruses or any other technologies that may harm our website or the interests of our users</li>
+                        <li>Copy, modify, or distribute content from our website without our permission</li>
+                        <li>Harvest or otherwise collect information about users without their consent</li>
+                        <li>Circumvent any technical measures we use to provide our services</li>
+                    </ul>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>5. Recipe and Culinary Content</h2>
+                    <h3>5.1 Accuracy and Testing</h3>
+                    <p>Our recipes are extensively tested in our professional kitchen. However, cooking results may vary based on individual skill, ingredient quality, equipment, and environmental factors. We cannot guarantee specific results.</p>
+                    
+                    <h3>5.2 Nutritional Information</h3>
+                    <p>Nutritional information provided with recipes is approximate and intended as a guideline only. For specific dietary needs, please consult a qualified nutritionist or medical professional.</p>
+                    
+                    <h3>5.3 Allergen Disclaimer</h3>
+                    <p>While we strive to identify potential allergens in our recipes, we cannot guarantee that recipes are free from any specific allergen. Users with food allergies should exercise caution and consult with their healthcare provider.</p>
+                    
+                    <h3>5.4 Safety Precautions</h3>
+                    <p>Users assume all risks associated with food preparation, including but not limited to risks of foodborne illness, cuts, burns, and other kitchen-related injuries. Always follow proper food safety guidelines and use caution when handling sharp objects and hot surfaces.</p>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>6. Third-Party Links and Content</h2>
+                    <p>Our website may contain links to third-party websites or services that are not owned or controlled by Lucent Gastronomic Nexus. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services. You acknowledge and agree that we shall not be responsible or liable for any damage or loss caused by or in connection with the use of any such content or services.</p>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>7. Termination</h2>
+                    <p>We may terminate or suspend your account and bar access to our website immediately, without prior notice or liability, under our sole discretion, for any reason whatsoever, including but not limited to a breach of these Terms.</p>
+                    
+                    <p>Upon termination, your right to use our website will cease immediately. If you wish to terminate your account, you may simply discontinue using our website or contact us to deactivate your account.</p>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>8. Limitation of Liability</h2>
+                    <p>In no event shall Lucent Gastronomic Nexus, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
+                    <ul>
+                        <li>Your access to or use of or inability to access or use our website</li>
+                        <li>Any conduct or content of any third party on our website</li>
+                        <li>Any content obtained from our website</li>
+                        <li>Unauthorized access, use, or alteration of your transmissions or content</li>
+                    </ul>
+                    
+                    <p>This limitation of liability applies whether the alleged liability is based on contract, tort, negligence, strict liability, or any other basis, even if we have been advised of the possibility of such damage.</p>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>9. Disclaimer</h2>
+                    <p>Your use of our website is at your sole risk. Our website is provided on an "AS IS" and "AS AVAILABLE" basis. Our website is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement, or course of performance.</p>
+                    
+                    <p>We do not warrant that:</p>
+                    <ul>
+                        <li>Our website will function uninterrupted, secure, or available at any particular time or location</li>
+                        <li>Any errors or defects will be corrected</li>
+                        <li>Our website is free of viruses or other harmful components</li>
+                        <li>The results of using our website will meet your requirements</li>
+                    </ul>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>10. Governing Law</h2>
+                    <p>These Terms shall be governed and construed in accordance with the laws of the State of California, United States, without regard to its conflict of law provisions.</p>
+                    
+                    <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions will remain in effect.</p>
+                </div>
+                
+                <div class="terms-section">
+                    <h2>11. Contact Information</h2>
+                    <p>If you have any questions about these Terms, please contact us at:</p>
+                    <p><strong>Lucent Gastronomic Nexus</strong><br>
+                    123 Culinary Avenue<br>
+                    Gastronomica, GR 12345<br>
+                    Email: legal@lucentgastronomic.com<br>
+                    Phone: (555) 123-4567</p>
+                </div>
+            </main>
+            
+            <!-- Sidebar -->
+            <aside class="terms-sidebar">
+                <h3 class="sidebar-title">Quick Navigation</h3>
+                <ul class="quick-nav">
+                    <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+                    <li><a href="#accounts">2. User Accounts</a></li>
+                    <li><a href="#property">3. Intellectual Property</a></li>
+                    <li><a href="#conduct">4. User Conduct</a></li>
+                    <li><a href="#recipes">5. Recipe Content</a></li>
+                    <li><a href="#links">6. Third-Party Links</a></li>
+                    <li><a href="#termination">7. Termination</a></li>
+                    <li><a href="#liability">8. Limitation of Liability</a></li>
+                    <li><a href="#disclaimer">9. Disclaimer</a></li>
+                    <li><a href="#law">10. Governing Law</a></li>
+                </ul>
+                
+                <div class="update-info">
+                    <h4>Document Information</h4>
+                    <p><strong>Last Updated:</strong> April 15, 2023</p>
+                    <p><strong>Effective Date:</strong> April 15, 2023</p>
+                    <p><strong>Previous Update:</strong> March 10, 2022</p>
+                </div>
+                
+                <div class="update-info">
+                    <h4>Related Documents</h4>
+                    <p><a href="privacy.html">Privacy Policy</a></p>
+                    <p><a href="cookies.html">Cookies Policy</a></p>
+                    <p><a href="disclaimer.html">Legal Disclaimer</a></p>
+                </div>
+            </aside>
+        </div>
+        
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2>Questions About Our Terms?</h2>
+            <p>If you have any questions or concerns about our Terms of Service, please don't hesitate to contact our legal team. We're here to help clarify any aspects of our policies.</p>
+            <a href="contact.html" class="contact-btn">Contact Our Legal Team</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Lucent Gastronomic Nexus</h3>
+                    <p>Elevating home cooking through meticulously tested recipes, detailed techniques, and culinary education since 2010.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">All Recipes</a></li>
+                        <li><a href="#">Seasonal Guides</a></li>
+                        <li><a href="#">Cooking Techniques</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="terms.html" class="active">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="cookies.html">Cookies Policy</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                        <li><a href="#">Copyright Information</a></li>
+                        <li><a href="#">Accessibility Statement</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Culinary Avenue,<br>Gastronomica, GR 12345</p>
+                        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> contact@lucentgastronomic.com</p>
+                        <p><i class="far fa-clock"></i> Mon-Fri: 9am-5pm</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Lucent Gastronomic Nexus. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('.quick-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 120,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update URL without page jump
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+        
+        // Highlight current section in sidebar while scrolling
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.terms-section');
+            const navLinks = document.querySelectorAll('.quick-nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

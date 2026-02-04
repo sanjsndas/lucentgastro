@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucent Gastronomic Nexus | Artisanal Recipes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-brown: #5D4037;
+            --dark-brown: #3E2723;
+            --medium-brown: #795548;
+            --light-brown: #D7CCC8;
+            --accent-brown: #A1887F;
+            --text-light: #FFF8F0;
+            --text-dark: #2C1810;
+            --highlight: #FFAB91;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        
+        body {
+            background-color: #F5F1EE;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-brown);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--highlight);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: var(--medium-brown);
+            color: var(--highlight);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(93, 64, 55, 0.85), rgba(62, 39, 35, 0.9)), url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            padding: 6rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .search-bar {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            display: flex;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1.1rem;
+        }
+        
+        .search-bar button {
+            background-color: var(--highlight);
+            color: var(--dark-brown);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 0 50px 50px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-bar button:hover {
+            background-color: #FF8A65;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+            margin-bottom: 4rem;
+        }
+        
+        /* Recipe Cards */
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-brown);
+            margin-bottom: 2rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-brown);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: var(--highlight);
+        }
+        
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+        
+        .recipe-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .recipe-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .recipe-content {
+            padding: 20px;
+        }
+        
+        .recipe-title {
+            font-size: 1.4rem;
+            color: var(--dark-brown);
+            margin-bottom: 10px;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--medium-brown);
+        }
+        
+        .recipe-desc {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .recipe-link {
+            display: inline-block;
+            background-color: var(--primary-brown);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .recipe-link:hover {
+            background-color: var(--dark-brown);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .sidebar-title {
+            font-size: 1.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 1.2rem;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--light-brown);
+        }
+        
+        .categories-list, .latest-recipes {
+            list-style: none;
+        }
+        
+        .categories-list li, .latest-recipes li {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--light-brown);
+        }
+        
+        .categories-list a, .latest-recipes a {
+            color: var(--medium-brown);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .categories-list a:hover, .latest-recipes a:hover {
+            color: var(--primary-brown);
+            padding-left: 5px;
+        }
+        
+        .latest-recipes .recipe-date {
+            font-size: 0.85rem;
+            color: var(--accent-brown);
+            font-style: italic;
+        }
+        
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--light-brown);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-brown);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-form button:hover {
+            background-color: var(--dark-brown);
+        }
+        
+        /* Featured Recipe */
+        .featured-recipe {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 4rem;
+        }
+        
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        .featured-img {
+            height: 100%;
+            min-height: 400px;
+            object-fit: cover;
+        }
+        
+        .featured-text {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .featured-title {
+            font-size: 2.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 1.5rem;
+        }
+        
+        .featured-desc {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .featured-link {
+            align-self: flex-start;
+            background-color: var(--highlight);
+            color: var(--dark-brown);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .featured-link:hover {
+            background-color: #FF8A65;
+            transform: translateY(-3px);
+        }
+        
+        /* About Section */
+        .about-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 4rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--dark-brown);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-brown);
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--highlight);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--highlight);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column a {
+            color: var(--light-brown);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column a:hover {
+            color: var(--highlight);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            margin-top: 10px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info i {
+            color: var(--highlight);
+            width: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--highlight);
+            color: var(--dark-brown);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: var(--light-brown);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-img {
+                min-height: 300px;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .recipe-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            .nav-menu.active {
+                display: block;
+            }
+            
+            .nav-menu ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-mortar-pestle"></i>
+                </div>
+                <div>
+                    <h1>Lucent Gastronomic Nexus</h1>
+                    <p>Artisanal Recipes & Culinary Wisdom</p>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                     <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="terms.html">Terms Of Privacy</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+					<li><a href="cookies.html">Cookies Policy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Culinary Artistry in Every Bite</h2>
+            <p>Discover over 500 meticulously crafted recipes, from timeless classics to innovative creations, all designed to elevate your home cooking to restaurant-quality excellence.</p>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for recipes, ingredients, or techniques...">
+                <button><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Featured Recipe -->
+        <section class="featured-recipe">
+            <div class="featured-content">
+                <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Featured Recipe" class="featured-img">
+                <div class="featured-text">
+                    <h3 class="featured-title">Artisan Chocolate & Hazelnut Tart</h3>
+                    <p class="featured-desc">A sublime dessert that combines rich dark chocolate with roasted hazelnuts in a buttery shortcrust pastry. This recipe showcases the delicate balance between bitter and sweet, with a texture that transitions from crisp to creamy. Perfect for special occasions or as an exquisite finish to any meal.</p>
+                    <a href="#" class="featured-link">View Full Recipe</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recipe Categories & Sidebar -->
+        <div class="main-content">
+            <div class="content-primary">
+                <h2 class="section-title">Latest Recipes</h2>
+                
+                <div class="recipe-grid">
+                    <!-- Recipe Card 1 -->
+                    <article class="recipe-card">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mediterranean Quinoa Bowl" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Mediterranean Quinoa Bowl</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 35 mins</span>
+                                <span><i class="fas fa-utensils"></i> 4 servings</span>
+                            </div>
+                            <p class="recipe-desc">A vibrant, nutrient-packed bowl featuring lemon-herb quinoa, roasted vegetables, chickpeas, and a creamy tahini dressing.</p>
+                            <a href="#" class="recipe-link">View Recipe</a>
+                        </div>
+                    </article>
+                    
+                    <!-- Recipe Card 2 -->
+                    <article class="recipe-card">
+                        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Braised Short Ribs" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Red Wine Braised Short Ribs</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 3.5 hours</span>
+                                <span><i class="fas fa-utensils"></i> 6 servings</span>
+                            </div>
+                            <p class="recipe-desc">Fall-off-the-bone tender short ribs braised in a rich red wine reduction with aromatic vegetables and fresh herbs.</p>
+                            <a href="#" class="recipe-link">View Recipe</a>
+                        </div>
+                    </article>
+                    
+                    <!-- Recipe Card 3 -->
+                    <article class="recipe-card">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sourdough Bread" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Artisan Sourdough Loaf</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 24 hours</span>
+                                <span><i class="fas fa-utensils"></i> 1 loaf</span>
+                            </div>
+                            <p class="recipe-desc">A classic sourdough with perfect crust and airy crumb, using a mature starter and long fermentation for optimal flavor.</p>
+                            <a href="#" class="recipe-link">View Recipe</a>
+                        </div>
+                    </article>
+                    
+                    <!-- Recipe Card 4 -->
+                    <article class="recipe-card">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Truffle Pasta" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Black Truffle Fettuccine</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 25 mins</span>
+                                <span><i class="fas fa-utensils"></i> 2 servings</span>
+                            </div>
+                            <p class="recipe-desc">Luxurious handmade fettuccine tossed in a black truffle butter sauce with Parmigiano-Reggiano and fresh parsley.</p>
+                            <a href="#" class="recipe-link">View Recipe</a>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- About Section -->
+                <section class="about-section">
+                    <h2 class="section-title">About Lucent Gastronomic Nexus</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h3>Where Culinary Art Meets Science</h3>
+                            <p>Founded in 2010, Lucent Gastronomic Nexus began as a passion project between three culinary school graduates who believed that exceptional cooking should be accessible to everyone. What started as a small blog has grown into a comprehensive culinary resource with over 500 original recipes, 200 technique guides, and a thriving community of food enthusiasts.</p>
+                            <p>Our philosophy centers on the intersection of tradition and innovation. We respect time-honored techniques while embracing modern culinary science to create recipes that are both deeply flavorful and reliably reproducible. Each recipe in our collection undergoes rigorous testing in our test kitchen, with precise measurements, detailed instructions, and thorough explanations of the "why" behind each step.</p>
+                            <p>Beyond recipes, we're committed to sustainability, seasonal eating, and supporting local producers. Our seasonal guides, preservation techniques, and ingredient spotlights help cooks make the most of nature's bounty while minimizing waste.</p>
+                        </div>
+                        <div class="about-img">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Our Kitchen">
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Recipe Categories</h3>
+                    <ul class="categories-list">
+                        <li><a href="#">Appetizers & Starters <span>(48)</span></a></li>
+                        <li><a href="#">Soups & Stews <span>(67)</span></a></li>
+                        <li><a href="#">Main Courses <span>(142)</span></a></li>
+                        <li><a href="#">Vegetarian & Vegan <span>(89)</span></a></li>
+                        <li><a href="#">Baking & Pastry <span>(73)</span></a></li>
+                        <li><a href="#">Desserts <span>(115)</span></a></li>
+                        <li><a href="#">Preserves & Ferments <span>(32)</span></a></li>
+                        <li><a href="#">Seasonal Specials <span>(56)</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Recently Added</h3>
+                    <ul class="latest-recipes">
+                        <li>
+                            <a href="#">Spring Pea Risotto with Lemon Zest
+                                <span class="recipe-date">Apr 12</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Smoked Paprika Chicken Skewers
+                                <span class="recipe-date">Apr 10</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Rhubarb & Ginger Compote
+                                <span class="recipe-date">Apr 8</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Wild Mushroom & Thyme Galette
+                                <span class="recipe-date">Apr 5</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Honey Lavender Crème Brûlée
+                                <span class="recipe-date">Apr 3</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Newsletter</h3>
+                    <p>Subscribe to receive weekly recipes, seasonal guides, and culinary tips.</p>
+                    <form class="newsletter-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Lucent Gastronomic Nexus</h3>
+                    <p>Elevating home cooking through meticulously tested recipes, detailed techniques, and culinary education since 2010.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">All Recipes</a></li>
+                        <li><a href="#">Seasonal Guides</a></li>
+                        <li><a href="#">Cooking Techniques</a></li>
+                        <li><a href="#">Ingredient Dictionary</a></li>
+                        <li><a href="#">Meal Planning</a></li>
+                        <li><a href="#">Wine Pairings</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Conversion Charts</a></li>
+                        <li><a href="#">Substitution Guide</a></li>
+                        <li><a href="#">Kitchen Equipment</a></li>
+                        <li><a href="#">Food Safety</a></li>
+                        <li><a href="#">Glossary of Terms</a></li>
+                        <li><a href="#">Culinary Books</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Culinary Avenue,<br>Gastronomica, GR 12345</p>
+                        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> contact@lucentgastronomic.com</p>
+                        <p><i class="far fa-clock"></i> Mon-Fri: 9am-5pm</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Lucent Gastronomic Nexus. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+        
+        // Recipe card interaction
+        document.querySelectorAll('.recipe-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter! You will receive your first edition soon.');
+            this.reset();
+        });
+        
+        // Search functionality
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-bar input').value;
+            if (searchTerm.trim() !== '') {
+                alert(`Searching for: "${searchTerm}" - This would trigger a full search in a complete implementation.`);
+                // In a real implementation, this would redirect to a search results page
+                // window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`;
+            }
+        });
+        
+        // Allow Enter key to trigger search
+        document.querySelector('.search-bar input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-bar button').click();
+            }
+        });
+    </script>
+</body>
+</html>
